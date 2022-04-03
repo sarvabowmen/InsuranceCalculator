@@ -1,4 +1,52 @@
 <div class="container">
-    <form [formGroup]="options"> 
+    <h1>Please fill up the below details to calcualte your insurance premium</h1>
+    <form [formGroup]="options">
+        <div>
+            <label>Name: </label>
+            <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                <mat-label>Please Enter your name</mat-label>
+                <input matInput required formControlName="name" placeholder="Simple placeholder">
+              </mat-form-field>          
+        </div>
+       <div>
+            <label>Age: </label>
+            <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                <mat-label>Please Enter your age</mat-label>
+                <input matInput required placeholder="Simple placeholder" formControlName="age">
+              </mat-form-field>          
+        </div>
+         <div>
+            <label>Date of Birth:</label>
+            <mat-form-field appearance="fill">
+                <mat-label>Date of Birth</mat-label>
+                <input required matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>   
+        </div>
+         <div>
+             <label>Occupation: </label>
+             <mat-form-field appearance="fill"
+                             [floatLabel]="floatLabelControl.value">
+                 <mat-select required formControlName="occupation">
+                     <mat-option>-- None --</mat-option>
+                     <mat-option value="0">Cleaner</mat-option>
+                   <mat-option value="1">Doctor</mat-option>
+                   <mat-option value="2">Author</mat-option>
+                   <mat-option value="3">Farmer</mat-option>
+                   <mat-option value="4">Mechanic</mat-option>
+                   <mat-option value="5">Florist</mat-option>
+                 </mat-select>
+                 <mat-label><b> Occupation</b></mat-label>
+             </mat-form-field>
+         </div>
+
+        <div>
+            <label>Death Sum Assured: </label>
+            <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
+                <mat-label>Please Enter Death Sum Assured</mat-label>
+                <input matInput formControlName="sumAssured" required placeholder="Simple placeholder">
+              </mat-form-field>          
+        </div>
     </form>
 </div>
