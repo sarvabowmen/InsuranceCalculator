@@ -11,7 +11,7 @@ namespace InsuranceCalculator.Abstractions.Services
 
         }
 
-        public int CalculatePremium()
+        public decimal CalculatePremium(InsuranceModel insuranceModel)
         {
             throw new NotImplementedException();
         }

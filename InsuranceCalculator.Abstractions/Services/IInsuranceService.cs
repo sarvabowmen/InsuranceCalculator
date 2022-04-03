@@ -4,8 +4,8 @@ using System.Text;
 
 namespace InsuranceCalculator.Abstractions.Services
 {
-    interface IInsuranceService
+    public interface IInsuranceService
     {
-        public int CalculatePremium();
+        public decimal CalculatePremium(InsuranceModel insuranceModel);
     }
 }

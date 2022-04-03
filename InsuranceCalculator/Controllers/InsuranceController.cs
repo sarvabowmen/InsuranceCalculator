@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Runtime;
+using InsuranceCalculator.Abstractions.Services;
 
 namespace InsuranceCalculator.Controllers
 {
@@ -13,10 +14,17 @@ namespace InsuranceCalculator.Controllers
     [ApiController]
     public class InsuranceController : ControllerBase
     {
+        private IInsuranceService _insuranceService;
+        public InsuranceController(IInsuranceService insuranceService)
+        {
+            _insuranceService = insuranceService;
+        }
         [HttpPost]
         public async Task<IActionResult> Post(InsuranceCalulationRequestModel req)
         {
-            return Ok();
+            var insuranceModel = req.ToInsuranceModel();
+            var premium = _insuranceService.CalculatePremium(insuranceModel);
+            return Ok(premium);
         }
     }
 }

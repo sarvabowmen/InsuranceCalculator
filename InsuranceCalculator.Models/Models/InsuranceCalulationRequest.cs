@@ -1,4 +1,4 @@
-﻿using System;
+﻿using InsuranceCalculator.Abstractions;
 
 namespace InsuranceCalculator.Models
 {
@@ -6,7 +6,7 @@ namespace InsuranceCalculator.Models
     {
         public int Age { get; set; }
         public decimal InsuredAmount { get; set; }
-        public Enum Occupation { get; set; }
+        public Enums.Occupation Occupation { get; set; }
 
     }
 }
