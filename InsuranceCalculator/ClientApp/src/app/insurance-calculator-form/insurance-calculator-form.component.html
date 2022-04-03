@@ -16,7 +16,7 @@
             <label>Age: </label>
             <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                 <mat-label>Please Enter your age</mat-label>
-                <input matInput required placeholder="Simple placeholder" formControlName="age">
+                <input matInput type="number" required placeholder="Simple placeholder" formControlName="age">
               </mat-form-field>
               <span class="text-danger"
               *ngIf="(insuranceFormControl.age.touched || submitted) && insuranceFormControl.age.errors?.required">
@@ -41,13 +41,13 @@
              <mat-form-field appearance="fill"
                              [floatLabel]="floatLabelControl.value">
                  <mat-select required formControlName="occupation">
-                     <mat-option value="-1">-- None --</mat-option>
-                     <mat-option value="0">Cleaner</mat-option>
-                   <mat-option value="1">Doctor</mat-option>
-                   <mat-option value="2">Author</mat-option>
-                   <mat-option value="3">Farmer</mat-option>
-                   <mat-option value="4">Mechanic</mat-option>
-                   <mat-option value="5">Florist</mat-option>
+                     <mat-option value=-1>-- None --</mat-option>
+                     <mat-option value=0>Cleaner</mat-option>
+                   <mat-option value=1>Doctor</mat-option>
+                   <mat-option value=2>Author</mat-option>
+                   <mat-option value=3>Farmer</mat-option>
+                   <mat-option value=4>Mechanic</mat-option>
+                   <mat-option value=5>Florist</mat-option>
                  </mat-select>
                  <mat-label><b> Occupation</b></mat-label>
              </mat-form-field>
@@ -61,7 +61,7 @@
             <label>Death Sum Assured: </label>
             <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                 <mat-label>Please Enter Death Sum Assured</mat-label>
-                <input matInput formControlName="sumAssured" required placeholder="Simple placeholder">
+                <input matInput type="number" formControlName="sumAssured" required placeholder="Simple placeholder">
               </mat-form-field>
               <span class="text-danger"
               *ngIf="(insuranceFormControl.sumAssured.touched || submitted) && insuranceFormControl.sumAssured.errors?.required">
@@ -69,7 +69,12 @@
               </span>           
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-success">Calculate</button>
+            <button type="submit" class="btn btn-success mr-4">Calculate</button>
+            <button type="reset" class="btn btn-warning" (click)="OnReset()" >Reset</button>
         </div>
     </form>
+
+    <div *ngIf="deathPremium > 0">
+        <strong><label>Caluculated Death Premium</label> : <label>{{deathPremium}}</label></strong>
+    </div>
 </div>

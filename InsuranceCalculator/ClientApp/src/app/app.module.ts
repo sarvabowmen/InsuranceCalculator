@@ -14,6 +14,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatSelectModule} from '@angular/material/select';
 import {MatNativeDateModule } from '@angular/material/core';
+import { InsuranceService } from './services/insurance-service.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,7 @@ import {MatNativeDateModule } from '@angular/material/core';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [InsuranceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

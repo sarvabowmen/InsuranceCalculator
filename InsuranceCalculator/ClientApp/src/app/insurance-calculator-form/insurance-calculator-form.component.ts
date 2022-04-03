@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { InsuranceRequest } from '../models/insuranceRequest';
+import { InsuranceService } from '../services/insurance-service.service';
 
 @Component({
   selector: 'app-insurance-calculator',
@@ -8,10 +10,11 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class InsuranceCalucluatorForm implements OnInit{
     insuranceForm: FormGroup;
     submitted = false;
+    deathPremium: number = 0;
 
     floatLabelControl = new FormControl('auto');
 
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private insuranceService: InsuranceService) {
         
     }
     ngOnInit(){
@@ -33,9 +36,27 @@ export class InsuranceCalucluatorForm implements OnInit{
     
     onSubmit(){
       if (this.insuranceForm.valid) {
+        this.submitted = true;
         alert('Form Submitted succesfully!!!\n Check the values in browser console.');
+        let insuranceRequest: InsuranceRequest =  { age: this.insuranceForm.value.age,
+        sumAssured: this.insuranceForm.value.sumAssured,
+        occupation:  this.insuranceForm.value.occupation
+        }
+        this.insuranceService.calculateSumAssured(
+          insuranceRequest
+        ).subscribe(res=> {
+          this.insuranceService.deathPremiumAmount = this.deathPremium = res;
+          console.log(res);
+        }, (err)=> {
+          this.submitted = false;
+        })
         console.table(this.insuranceForm.value);
       }
+    }
+
+    OnReset(){
+      this.insuranceForm.markAsPristine();
+      this.insuranceForm.reset(this.insuranceForm.value);
     }
 
 }

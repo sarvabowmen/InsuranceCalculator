@@ -10,7 +10,7 @@ namespace InsuranceCalculator
             var insuranceModel = new InsuranceModel
             {
                 Age = insuranceRequestModel.Age,
-                DeathCoverAmount = insuranceRequestModel.InsuredAmount,
+                DeathCoverAmount = insuranceRequestModel.SumAssured,
                 Occupation = insuranceRequestModel.Occupation,
             };
 
