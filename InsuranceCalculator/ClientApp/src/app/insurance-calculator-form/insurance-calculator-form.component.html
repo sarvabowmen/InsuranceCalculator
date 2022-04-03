@@ -1,19 +1,27 @@
 <div class="container">
     <h1>Please fill up the below details to calcualte your insurance premium</h1>
-    <form [formGroup]="options">
+    <form [formGroup]="insuranceForm" (ngSubmit)="onSubmit()">
         <div>
             <label>Name: </label>
             <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                 <mat-label>Please Enter your name</mat-label>
                 <input matInput required formControlName="name" placeholder="Simple placeholder">
               </mat-form-field>          
+              <span class="text-danger"
+                *ngIf="(insuranceFormControl.name.touched || submitted) && insuranceFormControl.name.errors?.required">
+                Name is required
+                </span>
         </div>
        <div>
             <label>Age: </label>
             <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                 <mat-label>Please Enter your age</mat-label>
                 <input matInput required placeholder="Simple placeholder" formControlName="age">
-              </mat-form-field>          
+              </mat-form-field>
+              <span class="text-danger"
+              *ngIf="(insuranceFormControl.age.touched || submitted) && insuranceFormControl.age.errors?.required">
+              Age is required
+              </span>        
         </div>
          <div>
             <label>Date of Birth:</label>
@@ -23,13 +31,17 @@
                 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
               </mat-form-field>   
+              <span class="text-danger"
+              *ngIf="(insuranceFormControl.dateOfBirth.touched || submitted) && insuranceFormControl.dateOfBirth.errors?.required">
+              Date of Birth is required
+              </span>    
         </div>
          <div>
              <label>Occupation: </label>
              <mat-form-field appearance="fill"
                              [floatLabel]="floatLabelControl.value">
                  <mat-select required formControlName="occupation">
-                     <mat-option>-- None --</mat-option>
+                     <mat-option value="-1">-- None --</mat-option>
                      <mat-option value="0">Cleaner</mat-option>
                    <mat-option value="1">Doctor</mat-option>
                    <mat-option value="2">Author</mat-option>
@@ -39,6 +51,10 @@
                  </mat-select>
                  <mat-label><b> Occupation</b></mat-label>
              </mat-form-field>
+             <span class="text-danger"
+              *ngIf="(insuranceFormControl.occupation.touched || submitted) && insuranceFormControl.occupation.errors?.required">
+              Occupation is required
+              </span>  
          </div>
 
         <div>
@@ -46,7 +62,14 @@
             <mat-form-field appearance="fill" [floatLabel]="floatLabelControl.value">
                 <mat-label>Please Enter Death Sum Assured</mat-label>
                 <input matInput formControlName="sumAssured" required placeholder="Simple placeholder">
-              </mat-form-field>          
+              </mat-form-field>
+              <span class="text-danger"
+              *ngIf="(insuranceFormControl.sumAssured.touched || submitted) && insuranceFormControl.sumAssured.errors?.required">
+              Sum Assured is required
+              </span>           
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Calculate</button>
         </div>
     </form>
 </div>
