@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using static InsuranceCalculator.Abstractions.Constants;
 
 namespace InsuranceCalculator.Abstractions.Services
 {
@@ -13,7 +14,8 @@ namespace InsuranceCalculator.Abstractions.Services
 
         public decimal CalculatePremium(InsuranceModel insuranceModel)
         {
-            throw new NotImplementedException();
+            var ratingFactor = OccupationRatings[insuranceModel.Occupation];
+            return (insuranceModel.DeathCoverAmount * ratingFactor * insuranceModel.Age) / 1000 * 12;
         }
     }
 }

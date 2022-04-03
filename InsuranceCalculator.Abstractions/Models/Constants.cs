@@ -6,7 +6,7 @@ namespace InsuranceCalculator.Abstractions
 {
     class Constants
     {
-        public Dictionary<Enums.Occupation, decimal> OccupationRatings = new Dictionary<Enums.Occupation, decimal>
+        public static Dictionary<Enums.Occupation, decimal> OccupationRatings = new Dictionary<Enums.Occupation, decimal>
         {
             { Enums.Occupation.Author, 1.25m },
             { Enums.Occupation.Cleaner, 1.5m },
