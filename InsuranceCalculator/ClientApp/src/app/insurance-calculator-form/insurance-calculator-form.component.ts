@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { InsuranceRequest } from '../models/insuranceRequest';
 import { InsuranceService } from '../services/insurance-service.service';
-
+import { InsuranceFormValidatorService } from '../services/insurance-form-validator.service';
 @Component({
   selector: 'app-insurance-calculator',
   templateUrl: './insurance-calculator-form.component.html',
@@ -14,18 +14,20 @@ export class InsuranceCalucluatorForm implements OnInit{
 
     floatLabelControl = new FormControl('auto');
 
-    constructor(private fb: FormBuilder, private insuranceService: InsuranceService) {
+    constructor(private fb: FormBuilder, private insuranceService: InsuranceService,
+      private customValidator: InsuranceFormValidatorService) {
         
     }
     ngOnInit(){
       this.insuranceForm = this.fb.group({
         name: ['', Validators.required],
-        age: ['', Validators.required],
-        dateOfBirth: ['', Validators.required],
+        age: ['', [Validators.required, this.customValidator.ageValidator.bind(this)]],
+        dateOfBirth: ['', [Validators.required, this.customValidator.dateValidator.bind(this)]],
         occupation: ['', Validators.required],
         sumAssured: ['', Validators.required]
       },{
         floatLabel: this.floatLabelControl,
+        validators: this.customValidator.ValidateAgeAndDateOfBirth('age', 'dateOfBirth'),
       });
 
     }

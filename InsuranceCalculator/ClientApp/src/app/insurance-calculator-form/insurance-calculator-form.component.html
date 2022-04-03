@@ -21,7 +21,14 @@
               <span class="text-danger"
               *ngIf="(insuranceFormControl.age.touched || submitted) && insuranceFormControl.age.errors?.required">
               Age is required
-              </span>        
+              </span>
+              <span class="text-danger"
+              *ngIf="insuranceFormControl.age.touched && insuranceFormControl.age.errors?.invalidAge">
+              Age should be between 1 to 100</span>
+
+              <span class="text-danger"
+              *ngIf="insuranceFormControl.age.touched && insuranceFormControl.age.errors?.ageMismatch">
+              Age and date of birth mismatch</span>
         </div>
          <div>
             <label>Date of Birth:</label>
@@ -34,7 +41,10 @@
               <span class="text-danger"
               *ngIf="(insuranceFormControl.dateOfBirth.touched || submitted) && insuranceFormControl.dateOfBirth.errors?.required">
               Date of Birth is required
-              </span>    
+              </span>
+              <span class="text-danger"
+              *ngIf="insuranceFormControl.dateOfBirth.touched && insuranceFormControl.dateOfBirth.errors?.invalidDate">
+              Date of Birth range should be between 1900 to 2022</span>
         </div>
          <div>
              <label>Occupation: </label>
